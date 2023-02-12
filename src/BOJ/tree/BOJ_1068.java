@@ -22,7 +22,7 @@ public class BOJ_1068 {
 
         for(int i=0; i<n; i++){
             if(i==0){
-                root =
+                root =root
             }
             else{
 
