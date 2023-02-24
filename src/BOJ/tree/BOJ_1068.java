@@ -5,29 +5,52 @@ import java.util.*;
 
 public class BOJ_1068 {
 
-    static List<Integer>[] node;
+    static int n, delete;
+    static int[] parent;
+    static int count;
+    static boolean[] visited;
+
     public static void main(String[] args) throws IOException {
-        BufferedReader sb = new BufferedReader(new InputStreamReader(System.in));
-        int n = Integer.parseInt(sb.readLine());
-        StringTokenizer st = new StringTokenizer(sb.readLine()," ");
-        int[] numbers = new int[n];
-        node = new List[n];
-
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        n = Integer.parseInt(br.readLine());
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+        parent = new int[n];
         int root = 0;
-        for(int i=0; st.hasMoreTokens(); i++){
-            node[i] = new ArrayList<>();
-            numbers[i]= (Integer.valueOf(st.nextToken()));
+        for(int i = 0; i < n; i++) {
+            parent[i] = Integer.parseInt(st.nextToken());
+            if(parent[i] == -1) root = i;
         }
-        Arrays.sort(numbers);
+        delete = Integer.parseInt(br.readLine());
 
-        for(int i=0; i<n; i++){
-            if(i==0){
-                root =root
-            }
-            else{
+        deleteNode(delete);
 
+        count = 0;
+        visited = new boolean[n];
+        countLeaf(root);
+
+        System.out.println(count);
+    }
+
+    public static void deleteNode(int d) {
+        parent[d] = -2;
+        for(int i = 0; i < n; i++) {
+            if(parent[i] == d) {
+                deleteNode(i);
             }
         }
+    }
 
+    public static void countLeaf(int s) {
+        boolean isLeaf = true;
+        visited[s] = true;
+        if(parent[s] != -2) {
+            for(int i = 0; i < n; i++) {
+                if(parent[i] == s && visited[i] == false) {
+                    countLeaf(i);
+                    isLeaf = false;
+                }
+            }
+            if(isLeaf) count++;
+        }
     }
 }
