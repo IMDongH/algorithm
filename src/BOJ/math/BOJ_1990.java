@@ -3,7 +3,8 @@ package BOJ.math;
 import java.io.*;
 import java.util.*;
 
-public class BOJ_1990 {  public static boolean[] isPrime = new boolean[100_000_001];
+public class BOJ_1990 {
+    public static boolean[] isPrime = new boolean[100_000_001];
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
