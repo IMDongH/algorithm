@@ -8,46 +8,25 @@ public class BOJ_11279 {
 
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static StringBuilder sb = new StringBuilder();
-    static LinkedList<Integer> arr = new LinkedList<>();
+    static PriorityQueue<Integer> pq = new PriorityQueue<>(Comparator.reverseOrder());
 
     public static void main(String[] args) throws IOException {
         int n = Integer.parseInt(br.readLine());
 
-        for (int i = 0; i < n; i++) {
-            int index = Integer.parseInt(br.readLine());
-//            System.out.println("index = " + index + " " +  arr.size() + " " + '\n' );
-            if (index == 0) {
-                if (!arr.isEmpty()) {
-                    Integer remove = arr.pollFirst();
-//                    System.out.println("remove " + remove + "\n");
-                    sb.append(remove);
-                    sb.append("\n");
-                } else {
-//                    System.out.println("remove " + "\n");
-                    sb.append(0);
-                    sb.append("\n");
-                }
-            } else {
-                if (!arr.isEmpty()) {
-                    boolean flag = false;
-                    int j = 0;
-                    for (Integer integer : arr) {
-                        if (integer <= index) {
-                            arr.add(j, index);
-                            flag = true;
-                            break;
-                        }
-                        j++;
-                    }
-                    if(!flag)
-                    arr.add(j, index);
+        for(int i=0; i<n; i++){
+            int num = Integer.parseInt(br.readLine());
 
-                } else {
-                    arr.add(index);
+            if(num ==0){
+                if(pq.isEmpty()){
+                    System.out.println("0");
+                }
+                else{
+                    System.out.println(pq.poll());
                 }
             }
+            else{
+                pq.add(num);
+            }
         }
-        System.out.println(sb);
-
     }
 }
