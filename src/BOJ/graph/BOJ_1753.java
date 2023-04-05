@@ -23,7 +23,7 @@ public class BOJ_1753 {
         dist = new int[V + 1];
         Arrays.fill(dist, Integer.MAX_VALUE);
 
-        for (int i = 0; i < E; i++) {
+        for (int i = 1; i < V; i++) {
             arr[i] = new ArrayList<>();
         }
 
@@ -74,15 +74,6 @@ public class BOJ_1753 {
 
             this.v = v;
             this.w = w;
-        }
-
-        @Override
-        public String toString() {
-            return "graph{" +
-
-                    ", v=" + v +
-                    ", w=" + w +
-                    '}';
         }
 
 
