@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
+
 public class BOJ_1987 {
 
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
