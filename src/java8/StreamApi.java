@@ -9,7 +9,7 @@ public class StreamApi {
 
     public static void main(String[] args) {
 
-        for(int i=0; i<20000000; i++) {
+        for(int i=0; i<1000000; i++) {
             names.add(String.valueOf(i));
         }
 
@@ -34,9 +34,9 @@ public class StreamApi {
         func.calculateTime(() -> {
             int count=0;
             for (String name : names) {
-//                if(name.startsWith("1")){
+                if(name.startsWith("1")){
                     count ++;
-//                }
+                }
             }
             System.out.println("count = " + count);
         });
@@ -46,8 +46,8 @@ public class StreamApi {
          * 항상 빠르지 않음
          */
         func.calculateTime(() -> {
-            System.out.println("count = " + names.stream()
-//                    .filter((s) -> s.startsWith("1"))
+            System.out.println("count = " + names.parallelStream()
+                    .filter((s) -> s.startsWith("1"))
                     .count());
         });
 
