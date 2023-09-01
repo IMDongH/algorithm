@@ -34,35 +34,32 @@ public class BOJ_1283 {
 
             String key = words[i].substring(0, 1).toUpperCase();
 
-            if (keySet.get(key) == null) //map 에 존재하지 않는 경우 - key 로 등록 가능
-            {
-                keySet.put(key, words[i]);
-                sb = new StringBuilder(words[i]);
-                sb.insert(0, '[').insert(2, ']');
-                words[i] = sb.toString();
-                print(words);
-                return;
-            }
+            if (check(words, i, 0, key)) return;
         }
 
         //여기 까지 온 경우 첫 글자에 없는 경우임 - 모든 글자 탐색하며 확인
         for (int i = 0; i < words.length; i++) {
             for (int j = 0; j < words[i].length(); j++) {
                 String key = String.valueOf(words[i].charAt(j)).toUpperCase();
-                if (keySet.get(key) == null) //map 에 존재하지 않는 경우 - key 로 등록 가능
-                {
-                    keySet.put(key, words[i]);
-                    sb = new StringBuilder(words[i]);
-                    sb.insert(j, '[').insert(j+2, ']');
-                    words[i] = sb.toString();
-                    print(words);
-                    return;
-                }
+                if (check(words, i, j, key)) return;
             }
         }
 
         //어떤 글자도 불가능 한 경우
         result.append(originalS).append("\n");
+    }
+
+    private static boolean check(String[] words, int i, int j, String key) {
+        if (keySet.get(key) == null) //map 에 존재하지 않는 경우 - key 로 등록 가능
+        {
+            keySet.put(key, words[i]);
+            sb = new StringBuilder(words[i]);
+            sb.insert(j, '[').insert(j +2, ']');
+            words[i] = sb.toString();
+            print(words);
+            return true;
+        }
+        return false;
     }
 
     private static void print(String[] words) {
